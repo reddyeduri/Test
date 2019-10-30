@@ -1,0 +1,35 @@
+﻿@model IEnumerable<VocantsBusinessLogic.Models.TvMazeViewModel>
+
+@{
+    ViewBag.Title = "Serverside - Part1";
+}
+
+<h2>Serverside - Part1</h2>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<tr>
+						<th>Genres</th>
+						<th>Name</th>
+						<th>Premiered</th>
+						<th>Rating</th>
+						<th>Summary</th>
+					</tr>
+					@foreach (var d in Model)
+					{
+					<tr>
+						<td>@d.Name</td><td>@d.Genres</td>
+						<td>@d.Premiered</td><td>@d.Rating</td><td>@Html.Raw(d.Summary)</td>
+					</tr>
+					}
+				</table>
+
+			</div>
+		</div>
+	</div>
+
+</div>
+

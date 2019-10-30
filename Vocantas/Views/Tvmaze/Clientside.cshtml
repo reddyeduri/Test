@@ -1,0 +1,91 @@
+﻿
+@{
+	ViewBag.Title = "Clientside";
+}
+
+<h2>Clientside</h2>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			@using (Html.BeginForm("Tvmaze", "Upload", FormMethod.Post,
+												  new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+			{
+				@Html.ValidationSummary(true)
+				<div class="row form-group">
+					<div class="col-md-3">
+						@Html.Label("Name")
+					</div>
+					<div class="col-md-6">
+						<input type="text" class="form-control" id="name" />
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-md-3">
+						@Html.Label("Genre")
+					</div>
+					<div class="col-md-6">
+						<input type="text" class="form-control" id="genre" />
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-md-3">
+						@Html.Label("PremieredOn")
+					</div>
+					<div class="col-md-6">
+						<input type="date" class="form-control" id="primieredOn" />
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-md-3">
+						@Html.Label("Rating")
+					</div>
+					<div class="col-md-6">
+						<input type="text" class="form-control" id="rating" />
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-md-3">
+						@Html.Label("Summary")
+					</div>
+					<div class="col-md-6">
+						<input type="text" class="form-control" id="summary" />
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-md-3">
+						@Html.Label("Inserted")
+					</div>
+					<div class="col-md-6">
+						<input type="datetime" class="form-control" id="inserted" />
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-md-3">
+						<input type="submit" class="btn btn-primary" />
+						</div>
+				</div>
+			}
+		</div>
+	</div>
+</div>
+
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+<script>
+	var uri = 'http://api.tvmaze.com/shows/42';
+
+	$(document).ready(function () {
+
+		$.get(uri).done(function (data) {
+			$("#name").val(data.name);
+			$("#genre").val(data.genre[0]);
+			$("#primieredOn").val(data.premiered);
+			$("#rating").val(data.rating);
+			$("#summary").val(data.summary);
+			$("#inserted").val(data.updated);
+		});
+	});
+
+</script>
+
